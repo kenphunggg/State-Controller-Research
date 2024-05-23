@@ -1,0 +1,58 @@
+# PERESISTENT VOLUME
+# PV-A
+kind: List
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: pv-a
+    labels:
+      type: local
+  spec:
+    storageClassName: manual
+    capacity:
+      storage: 20Gi
+    accessModes:
+      - ReadWriteMany
+    persistentVolumeReclaimPolicy: Retain
+    # nfs: 
+    #   server: 192.168.122.10
+    #   path: /data/db
+    hostPath:
+      path: '/data/db'
+# PV-B
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: pv-b
+    labels:
+      type: local
+  spec:
+    storageClassName: manual
+    capacity:
+      storage: 20Gi
+    accessModes:
+      - ReadWriteMany
+    persistentVolumeReclaimPolicy: Retain
+    # nfs: 
+    #   server: 192.168.122.10
+    #   path: /data/db
+    hostPath:
+      path: '/data/db'
+
+
+---
+
+# # PERSISTENT VOLUME CLAIM
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: mysql-pvc
+# spec:
+#   storageClassName: manual
+#   accessModes:
+#     - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 20Gi
