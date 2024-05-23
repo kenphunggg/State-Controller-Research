@@ -1,12 +1,20 @@
-FROM mysql:5.7.15
 
-MAINTAINER me
+# syntax=docker/dockerfile:1
+FROM ubuntu:20.04
 
-ENV MYSQL_ROOT_PASSWORD = 'PQThai29112003'
-ENV MYSQL_DATABASE = 'randomNumberDB'
-ENV MYSQL_USER = 'kenphung'
-ENV MYSQL_HOST = '%'
+# Install app dependencies
+# Install libraries
+RUN apt-get update && apt-get install -y python3-pip
+RUN pip install python-dotenv
+RUN pip install requests
+RUN apt-get install python3-mysql.connector -y
 
-ADD mysql.sql /docker-entrypoint-initdb.d
+# Install app
+WORKDIR /app
+COPY app.py .
+COPY init.py .
 
-EXPOSE 3306
+# Run app
+CMD python3 init.py
+
+

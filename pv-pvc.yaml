@@ -20,7 +20,7 @@ items:
     #   server: 192.168.122.10
     #   path: /data/db
     hostPath:
-      path: '/data/db'
+      path: '/data/db0'
 # PV-B
 - apiVersion: v1
   kind: PersistentVolume
@@ -39,7 +39,7 @@ items:
     #   server: 192.168.122.10
     #   path: /data/db
     hostPath:
-      path: '/data/db'
+      path: '/data/db1'
 
 
 ---
